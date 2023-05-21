@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=div, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin-top: 250px;
+            font-size: x-large;
+            text-align: center;
+        }
+
+        button {
+            background-color: rgb(5, 33, 249);
+            color: white;
+            font-size: large;
+        }
+
+        body {
+            background-image: url(download\ \(1\).jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #content a {
+            text-decoration: none;
+            color: rgb(84, 7, 249);
+            font-weight: bolder;
+        }
+
+        #content a:hover {
+            color: rgb(245, 3, 3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form onsubmit="logIn(event)">
+            <input type="email" placeholder="Enter Email!!.." id="email">
+            <br><br>
+            <input type="password" placeholder="Enter Password!!.." id="password">
+            <br><br>
+            <button>LOGIN</button>
+        </form>
+        <br>
+        <div id="content">
+            If you are not a member <a href="SIGNUP.html">SIGN UP</a>
+        </div>
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDcAYUVlc16Ek6L7_KHEUY-yp6QoDDpypQ",
+            authDomain: "authentication-2ff7e.firebaseapp.com",
+            projectId: "authentication-2ff7e",
+            storageBucket: "authentication-2ff7e.appspot.com",
+            messagingSenderId: "865977644086",
+            appId: "1:865977644086:web:73c306dc54b99d6dee1497",
+            measurementId: "G-CRQ544BC0H"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        var email=document.getElementById("email")
+        var pswd=document.getElementById("password")
+
+        window.logIn=function(e){
+            e.preventDefault()
+            let obj={
+                email:email.value,
+                password:pswd.value
+            }
+            signInWithEmailAndPassword(auth,obj.email,obj.password)
+            .then(()=>{
+                alert("Logged In!!!")
+                window.location.replace("Cart.HTML")
+            })
+            .catch((err)=>{
+                alert("error"+err)
+            })
+        }
+
+    </script>
+</body>
+
+</html>
